@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+# requires:
+#  bash
+#
+set -e
+
+yum remove  -y mysql-libs
+yum install -y http://ftp.iij.ad.jp/pub/db/mysql/Downloads/MySQL-Cluster-7.2/MySQL-Cluster-server-gpl-7.2.9-1.el6.x86_64.rpm
+yum install -y http://ftp.iij.ad.jp/pub/db/mysql/Downloads/MySQL-Cluster-7.2/MySQL-Cluster-client-gpl-7.2.9-1.el6.x86_64.rpm
+
+chkconfig mysql off
