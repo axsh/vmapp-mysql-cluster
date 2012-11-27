@@ -1,0 +1,47 @@
+[mysqld]
+# Options for mysqld process:
+ndbcluster                      # run NDB storage engine
+ndb-connectstring=10.254.78.18  # location of management server
+datadir=/var/lib/mysql
+pid-file=/var/lib/mysql/mysqld.pid
+
+[mysql_cluster]
+# Options for ndbd process:
+ndb-connectstring=10.254.78.18  # location of management server
+
+[mysqld_safe]
+log-error=/var/log/mysql/mysqld_error.log
+
+[client]
+port            = 3306
+socket          = /tmp/mysql.sock
+default-character-set = utf8
+
+# The MySQL server
+[mysqld]
+port            = 3306
+socket          = /tmp/mysql.sock
+
+#default-character-set = utf8
+skip-character-set-client-handshake
+character-set-server = utf8
+collation-server = utf8_general_ci
+init-connect = SET NAMES utf8
+
+# Replication Master Server (default)
+# binary logging is required for replication
+log-bin=mysql-bin
+
+# required unique id between 1 and 2^32 - 1
+# defaults to 1 if master-host is not set
+# but will not function as a master if omitted
+server-id       = 1
+
+expire_logs_days = 10
+log-bin = /var/log/mysql/mysql-bin/mysql-bin
+slow_query_log = 1
+slow_query_log_file = /var/log/mysql/mysql-slow.log
+
+[mysqldump]
+quick
+max_allowed_packet = 16M
