@@ -1,0 +1,18 @@
+#!/bin/bash
+#
+# requires:
+#  bash
+#  pwd
+#  chown
+#
+set -e
+
+##
+
+readonly abs_dirname=$(cd $(dirname $0) && pwd)
+. ${abs_dirname}/../../../../functions.sh
+
+## main
+
+mkdir -p             /var/log/mysql/mysql-bin
+chown -R mysql:mysql /var/log/mysql/mysql-bin
